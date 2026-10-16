@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOPARA | Reto Outdoor</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav class="nav">
+    <a class="brand" href="#inicio" aria-label="TOPARA inicio">
+      <img src="assets/logo-topara-blanco-transparente.png" alt="TOPARA">
+    </a>
+
+    <div class="nav-actions">
+      <button class="btn btn-outline" id="loginTop">Iniciar sesión</button>
+      <button class="btn btn-orange" id="registerTop">Crear cuenta</button>
+      <button class="btn btn-outline hidden" id="logoutTop">Salir</button>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="hero-content">
+      <div class="eyebrow">Explora · Conecta · Comparte</div>
+      <h1>EL RETO<br><span class="outline">TOPARA</span></h1>
+      <div class="slogan">Camina hacia tu meta.</div>
+      <p>
+        Colombia se descubre paso a paso. Encuentra un horizonte que te inspire,
+        disfruta el aire libre y comparte la aventura con nuestra comunidad.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="btn btn-orange" id="participateBtn">
+          PARTICIPAR EN EL RETO ↗
+        </button>
+        <button class="btn btn-outline"
+          onclick="document.getElementById('como').scrollIntoView({behavior:'smooth'})">
+          CONOCE EL RETO ↓
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="como">
+    <div class="section-head">
+      <div class="eyebrow">Tu próxima aventura empieza aquí</div>
+      <h2>Cuatro pasos.<br>Una gran historia.</h2>
+      <p class="lead">
+        Completa los requisitos y carga tus evidencias desde tu cuenta.
+        Podrás volver a entrar y consultar las imágenes guardadas en la nube.
+      </p>
+    </div>
+
+    <div class="steps">
+      <article class="step">
+        <div class="num">01</div>
+        <h3>Sigue a TOPARA</h3>
+        <p>Sigue las cuentas oficiales en TikTok, Instagram y Facebook. Sube una captura como evidencia.</p>
+      </article>
+
+      <article class="step">
+        <div class="num">02</div>
+        <h3>Demuestra tu aventura</h3>
+        <p>Sube una foto del lugar elegido y una evidencia donde aparezcas como participante.</p>
+      </article>
+
+      <article class="step">
+        <div class="num">03</div>
+        <h3>Encuentra tu horizonte</h3>
+        <p>Elige un lugar con vista amplia: un valle, una montaña, un cañón, una ciudad o el mar.</p>
+      </article>
+
+      <article class="step">
+        <div class="num">04</div>
+        <h3>Vive el aire libre</h3>
+        <p>Comparte una foto de una actividad al aire libre: picnic, lectura, juegos o descanso.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="upload-section section" id="evidencias">
+    <div class="section-head">
+      <div class="eyebrow">Tu espacio de participante</div>
+      <h2>Guarda tus evidencias.</h2>
+      <p class="lead">
+        Inicia sesión o crea una cuenta para organizar tus fotos por requisito.
+        Las imágenes se guardan en Supabase Storage.
+      </p>
+    </div>
+
+    <div id="signedOut" class="notice">
+      Para subir y consultar tus evidencias, primero debes iniciar sesión o crear una cuenta.
+    </div>
+
+    <div id="workspace" class="hidden">
+      <div class="dashboard-top">
+        <div class="profile-info">
+          <img
+            id="fotoPerfil"
+            src="assets/perfil-predeterminado.png"
+            alt="Foto de perfil"
+            class="profile-photo"
+          >
+
+          <div>
+            <h3 id="welcome" style="margin:0 0 6px"></h3>
+            <div style="color:#bbb;font-size:.9rem">
+              Tus evidencias de participación
+            </div>
+          </div>
+        </div>
+
+        <div class="user-pill" id="progressText">
+          0 de 4 categorías con fotos
+        </div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-label">
+          <span>Avance de evidencias</span>
+          <strong id="progressPct">0%</strong>
+        </div>
+        <div class="progress">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div class="social-list">
+        <label class="social">
+          <input type="checkbox" data-social="TikTok"> TikTok
+        </label>
+        <label class="social">
+          <input type="checkbox" data-social="Instagram"> Instagram
+        </label>
+        <label class="social">
+          <input type="checkbox" data-social="Facebook"> Facebook
+        </label>
+        <label class="social">
+          <input type="checkbox" data-social="Capturas subidas"> Capturas subidas
+        </label>
+      </div>
+
+      <div class="upload-grid">
+        <article class="upload-card">
+          <h3> 1. Capturas de redes</h3>
+          <p>Capturas que muestren que sigues las cuentas de TOPARA.</p>
+          <input class="file-input" type="file" accept="image/*" multiple data-category="redes">
+        </article>
+
+        <article class="upload-card">
+          <h3> 2. Foto del lugar</h3>
+          <p>Un paisaje con horizonte amplio y despejado.</p>
+          <input class="file-input" type="file" accept="image/*" multiple data-category="lugar">
+        </article>
+
+        <article class="upload-card">
+          <h3> 3. Foto del participante</h3>
+          <p>Una imagen donde aparezcas como participante en el lugar elegido. La más reciente será tu foto de perfil.</p>
+          <input class="file-input" type="file" accept="image/*" multiple data-category="participante">
+        </article>
+
+        <article class="upload-card">
+          <h3> 4. Actividad al aire libre</h3>
+          <p>Una foto de picnic, lectura, juegos u otra actividad al aire libre.</p>
+          <input class="file-input" type="file" accept="image/*" multiple data-category="actividad">
+        </article>
+      </div>
+
+      <h3 style="margin-top:36px">Mi galería</h3>
+      <p style="color:#bbb">Tus imágenes guardadas aparecerán aquí.</p>
+      <div class="preview-grid" id="gallery"></div>
+
+      <div class="notice" style="margin-top:24px">
+        Tus fotografías se guardan en Supabase Storage y están asociadas a tu cuenta.
+      </div>
+    </div>
+  </section>
+
+  <section class="dashboard">
+    <div class="section-head">
+      <div class="eyebrow">Aventura responsable</div>
+      <h2>El mejor paisaje es el que cuidamos.</h2>
+      <p class="lead">
+        Respeta los espacios naturales, no dejes residuos y asegúrate de tener
+        permiso para ingresar al lugar elegido. Antes de publicar, revisa que
+        las personas que aparecen en tus fotografías estén de acuerdo.
+      </p>
+    </div>
+    <button class="btn btn-black" id="joinBottom">CREAR MI CUENTA</button>
+  </section>
+
+  <footer class="footer">
+    <div><strong>TOPARA.</strong><br>Conquista lo desconocido.</div>
+    <div>Reto de aventura · Colombia</div>
+    <div>Identidad visual inspirada en el manual de marca TOPARA.</div>
+  </footer>
+
+  <div class="modal hidden" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="closeModal" aria-label="Cerrar">×</button>
+      <div class="eyebrow">Comunidad outdoor</div>
+      <h2 id="authTitle">Crea tu cuenta</h2>
+      <p id="authIntro">Regístrate para organizar tus evidencias.</p>
+
+      <form id="authForm">
+        <div id="nameWrap">
+          <label for="fullName">Nombre completo</label>
+          <input id="fullName" autocomplete="name" required placeholder="Tu nombre">
+        </div>
+
+        <label for="email">Correo electrónico</label>
+        <input id="email" type="email" autocomplete="email" required placeholder="tu@correo.com">
+
+        <label for="password">Contraseña</label>
+        <input id="password" type="password" minlength="6" autocomplete="new-password" required placeholder="Mínimo 6 caracteres">
+
+        <button class="btn btn-orange" type="submit" id="authSubmit">Crear cuenta</button>
+      </form>
+
+      <p class="modal-note">
+        La cuenta se gestiona con Supabase. Tus fotografías se guardan en la nube.
+      </p>
+
+      <div class="switch-auth">
+        <span id="switchText">¿Ya tienes cuenta?</span>
+        <a id="switchMode" href="#">Inicia sesión</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
